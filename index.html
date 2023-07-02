@@ -1,34 +1,22 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title>QR Code Generator</title>
-    <!-- QRious JavaScript libraryのリンク -->
-    <script src="https://cdn.rawgit.com/neocotic/qrious/v4.0.2/dist/qrious.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
 <body>
-
-    <h1>QR Code Generator</h1>
-
-    <!-- ユーザーがテキストを入力できるテキストボックス -->
-    <input type="text" id="inputText" placeholder="Enter text here">
-
-    <!-- QRコード生成ボタン -->
-    <button onclick="generateQRCode()">Generate QR Code</button>
-
-    <!-- QRコード表示キャンバス -->
-    <canvas id="qrcode"></canvas>
-
-    <script>
-    // QRコード生成関数
+  <h1>QRコード生成アプリ</h1>
+  <p>テキストを入力して、QRコードを生成してください。</p>
+  <input type="text" id="inputText" placeholder="テキストを入力">
+  <button onclick="generateQRCode()">QRコード生成</button>
+  <canvas id="qr-canvas"></canvas>
+  <script>
     function generateQRCode() {
-        var text = document.getElementById('inputText').value;
-        var qr = new QRious({
-          element: document.getElementById('qrcode'),
-          value: text,
-          size: 200
-        });
+      var text = document.getElementById('inputText').value;
+      var qr = new QRious({
+        element: document.getElementById('qr-canvas'),
+        value: text,
+        size: 200
+      });
     }
-    </script>
-    
+  </script>
 </body>
 </html>
