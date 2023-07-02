@@ -2,23 +2,40 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>QR Code Generator</title>
+  <title>QRコード生成</title>
   <style>
     body {
-      text-align: center;
       font-family: Arial, sans-serif;
     }
+
+    h1 {
+      text-align: center;
+    }
+
+    #inputText {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
     #qrcode {
-      margin-top: 20px;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>QRコードを生成するWebアプリ</h1>
-  <input type="text" id="inputText" placeholder="文字列を入力してください">
-  <button onclick="generateQRCode()">QRコードを生成</button>
-  <br>
-  <canvas id="qrcode"></canvas>
+  <h1>QRコード生成</h1>
+  <div>
+    <label for="inputText">テキストを入力してください:</label>
+    <br>
+    <textarea id="inputText" rows="4" placeholder="QRコードに変換するテキストを入力してください"></textarea>
+    <br>
+    <button onclick="generateQRCode()">QRコード生成</button>
+  </div>
+  <div id="qrcode"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
   <script>
@@ -27,7 +44,12 @@
       var qr = new QRious({
         element: document.getElementById('qrcode'),
         value: text,
+        size: 200
       });
+
+      if (text.length === 0) {
+        alert('テキストを入力してください');
+      }
     }
   </script>
 </body>
