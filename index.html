@@ -12,11 +12,21 @@
     input {
       width: 80%;
       font-size: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
     }
 
     button {
       font-size: 20px;
+      padding: 10px;
       margin: 10px;
+      background-color: #eee;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
     }
 
     #qrcode {
@@ -26,31 +36,24 @@
 </head>
 <body>
   <h1>QRコード生成アプリ</h1>
-  <p>文字列を入力して、QRコードを生成しましょう。</p>
-  <input type="text" id="inputText" placeholder="ここに文字列を入力">
-  <button id="generateButton">生成</button>
+  <p>文字列を入力して、QRコードを生成してください。</p>
+  <input id="inputText" type="text" placeholder="文字列を入力">
+  <button id="generateButton" onclick="generateQRCode()">生成</button>
   <div id="qrcode"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <script>
-    // ボタンの要素を取得
-    var button = document.getElementById('generateButton');
-    // ボタンがクリックされたときの処理
-    button.addEventListener('click', function() {
-      // 入力された文字列を取得
+    function generateQRCode() {
       var text = document.getElementById('inputText').value;
-      // 文字列が空でないかチェック
       if (text) {
-        // QRコードのオブジェクトを作成
         var qr = new QRious({
           element: document.getElementById('qrcode'),
           value: text,
           size: 300
         });
       } else {
-        // 文字列が空の場合はエラーメッセージを表示
         alert('文字列を入力してください。');
       }
-    });
+    }
   </script>
 </body>
 </html>
