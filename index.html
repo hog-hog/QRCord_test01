@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>QRコード生成</title>
-    <link rel="stylesheet" type="text/css" href="jquery-qrcode.min.css">
-    <style>
-        #qrcode {
-            margin: 20px auto;
-            width: 200px;
-        }
-    </style>
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 100px;
+    }
+    
+    #qrcode {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
+    
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <h1>QRコード生成</h1>
-    <div>
-        <label for="inputText">テキストを入力してください:</label>
-        <input type="text" id="inputText">
-        <button id="generateButton">生成</button>
-    </div>
-    <div id="qrcode"></div>
+  <h2>QR Code Generator</h2>
+  <input type="text" id="inputText" placeholder="Enter text">
+  <button onclick="generateQRCode()">Generate QR Code</button>
+  <br>
+  <canvas id="qrcode"></canvas>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="jquery-qrcode.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#generateButton').click(function() {
-                var text = $('#inputText').val();
-                $('#qrcode').empty().qrcode(text);
-            });
-        });
-    </script>
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <script>
+    function generateQRCode() {
+      var text = document.getElementById('inputText').value;
+      var qr = new QRious({
+        element: document.getElementById('qrcode'),
+        value: text,
+        size: 200
+      });
+    }
+  </script>
 </body>
 </html>
