@@ -1,0 +1,18 @@
+HTMLテンプレート生成:
+以下のプロンプトに従って、QRコードを表示するWebアプリのHTMLテンプレートを生成してください。
+
+1. QRコード生成ボタンに表示するテキストを入力してください（<button>タグ内）。
+2. QRコードを表示するためのキャンバスのIDを入力してください（<canvas>タグ内）。
+3. QRコードを生成するためのJavaScriptコードを入力してください（generateQRCode()関数内）。
+
+例:
+1. <button>Generate QR Code</button>
+2. <canvas id="qrcode"></canvas>
+3. function generateQRCode() {
+     var text = document.getElementById('inputText').value;
+     var qr = new QRious({
+       element: document.getElementById('qrcode'),
+       value: text,
+       size: 200
+     });
+   }
