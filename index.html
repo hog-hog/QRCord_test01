@@ -1,1 +1,26 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  </head>
+  <body>
+    <h1>QR Code Generator</h1>
+    <label for="inputText">Text:</label>
+    <input type="text" id="inputText">
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <canvas id="qrcode"></canvas>
+php
+Copy code
+<script>
+  function generateQRCode() {
+    var text = document.getElementById('inputText').value;
+    var qr = new QRious({
+      element: document.getElementById('qrcode'),
+      value: text,
+      size: 200
+    });
+  }
+</script>
+  </body>
+</html>
