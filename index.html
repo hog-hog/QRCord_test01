@@ -2,18 +2,20 @@
 <html>
   <head>
     <title>QR Code Generator</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   </head>
   <body>
-    <input type="text" id="inputText" placeholder="テキストを入力">
-    <button onclick="generateQRCode()">QRコード生成</button>
-    <canvas id="qrcodeCanvas"></canvas>
-    
+    <h1>QR Code Generator</h1>
+    <input type="text" id="inputText" placeholder="Enter text here">
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <br><br>
+    <canvas id="qrcode"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrious@latest"></script>
     <script>
       function generateQRCode() {
         var text = document.getElementById('inputText').value;
         var qr = new QRious({
-          element: document.getElementById('qrcodeCanvas'),
+          element: document.getElementById('qrcode'),
           value: text,
           size: 200
         });
