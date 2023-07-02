@@ -6,13 +6,13 @@
 </head>
 <body>
   <h1>QR Code Generator</h1>
-<label for="inputText">Text:</label>
-<input type="text" id="inputText"><br><br>
-
-<button onclick="generateQRCode()">Generate QR Code</button><br><br>
-
-<canvas id="qrcode"></canvas>
-
+  
+  <label for="inputText">Text:</label>
+  <input type="text" id="inputText">
+  <button onclick="generateQRCode()">Generate QR Code</button>
+  
+  <canvas id="qrcode"></canvas>
+  
   <script>
     function generateQRCode() {
       var text = document.getElementById('inputText').value;
@@ -25,7 +25,3 @@
   </script>
 </body>
 </html>
-
-
-
-
