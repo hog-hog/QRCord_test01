@@ -31,7 +31,8 @@
       
       // Generate QR code
       try {
-        var qr = new QRious({
+        var qr = new QRious();
+        qr.set({
           element: document.getElementById('qrCode'),
           value: text,
           size: 200
