@@ -2,35 +2,55 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>QR Code Generator</title>
+  <title>QRコード生成アプリ</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       text-align: center;
     }
 
-    #inputText {
-      margin-bottom: 10px;
+    input {
+      width: 80%;
+      font-size: 20px;
+    }
+
+    button {
+      font-size: 20px;
+      margin: 10px;
+    }
+
+    #qrcode {
+      margin: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>QR Code Generator</h1>
-  <input type="text" id="inputText" placeholder="Enter text">
+  <h1>QRコード生成アプリ</h1>
+  <p>文字列を入力して、QRコードを生成しましょう。</p>
+  <input type="text" id="inputText" placeholder="ここに文字列を入力">
+  <button id="generateButton">生成</button>
   <div id="qrcode"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/qrious.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <script>
-    function generateQRCode() {
+    // ボタンの要素を取得
+    var button = document.getElementById('generateButton');
+    // ボタンがクリックされたときの処理
+    button.addEventListener('click', function() {
+      // 入力された文字列を取得
       var text = document.getElementById('inputText').value;
-      var qr = new QRious({
-        element: document.getElementById('qrcode'),
-        value: text,
-        size: 300
-      });
-    }
-
-    document.getElementById('inputText').addEventListener('input', generateQRCode);
-    generateQRCode();
+      // 文字列が空でないかチェック
+      if (text) {
+        // QRコードのオブジェクトを作成
+        var qr = new QRious({
+          element: document.getElementById('qrcode'),
+          value: text,
+          size: 300
+        });
+      } else {
+        // 文字列が空の場合はエラーメッセージを表示
+        alert('文字列を入力してください。');
+      }
+    });
   </script>
 </body>
 </html>
