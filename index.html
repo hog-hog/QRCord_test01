@@ -1,49 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>QRコード生成</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        #qrCode {
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 100px;
+    }
+  </style>
 </head>
 <body>
-    <h1>任意の文字列をQRコードに変換</h1>
-    <p>文字列を入力してください:</p>
-    <input type="text" id="inputText">
-    <button onclick="generateQRCode()">QRコード生成</button>
-    <div id="qrCode"></div>
+  <h1>QR Code Generator</h1>
+  <input type="text" id="text-input" placeholder="Enter your text here">
+  <button onclick="generateQRCode()">Generate QR Code</button>
+  <br>
+  <canvas id="qrcode-canvas"></canvas>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-    <script>
-        function generateQRCode() {
-            var inputText = document.getElementById("inputText").value;
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <script>
+    function generateQRCode() {
+      var text = document.getElementById('text-input').value;
+      if (text.trim().length === 0) {
+        alert('Please enter a valid text.');
+        return;
+      }
 
-            // Clear existing QR code
-            var qrCodeElement = document.getElementById("qrCode");
-            qrCodeElement.innerHTML = "";
-
-            try {
-                if (inputText.trim() !== "") {
-                    var qr = new QRious({
-                        element: qrCodeElement,
-                        value: inputText,
-                        size: 200
-                    });
-                } else {
-                    throw new Error("文字列を入力してください。");
-                }
-            } catch (error) {
-                alert(error);
-            }
-        }
-    </script>
+      var qr = new QRious({
+        element: document.getElementById('qrcode-canvas'),
+        value: text,
+        size: 200
+      });
+    }
+  </script>
 </body>
 </html>
