@@ -3,34 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>QR Code Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/qrious.min.js"></script>
   <style>
     body {
       text-align: center;
-      margin-top: 100px;
+      font-family: Arial, sans-serif;
+    }
+    #qrCode {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>QR Code Generator</h1>
-  <input type="text" id="text-input" placeholder="Enter your text here">
-  <button onclick="generateQRCode()">Generate QR Code</button>
-  <br>
-  <canvas id="qrcode-canvas"></canvas>
+  <h1>任意の文字列をQRコードに変換するWebアプリ</h1>
+  <input type="text" id="inputText" placeholder="文字列を入力してください">
+  <button onclick="generateQRCode()">QRコード生成</button>
+  <div id="qrCode"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
   <script>
     function generateQRCode() {
-      var text = document.getElementById('text-input').value;
-      if (text.trim().length === 0) {
-        alert('Please enter a valid text.');
+      var inputText = document.getElementById("inputText").value;
+      var qrCodeDiv = document.getElementById("qrCode");
+
+      // Clear existing QR code, if any
+      qrCodeDiv.innerHTML = "";
+
+      if (inputText.trim() === "") {
+        alert("文字列を入力してください。");
         return;
       }
 
-      var qr = new QRious({
-        element: document.getElementById('qrcode-canvas'),
-        value: text,
-        size: 200
-      });
+      try {
+        var qr = new QRious({
+          element: qrCodeDiv,
+          value: inputText,
+          size: 200
+        });
+      } catch (error) {
+        console.error("QR code generation failed:", error);
+        alert("QRコードの生成に失敗しました。");
+      }
     }
   </script>
 </body>
