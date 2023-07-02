@@ -4,41 +4,21 @@
   <meta charset="UTF-8">
   <title>QR Code Generator</title>
   <style>
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
+    body {
       text-align: center;
     }
 
-    h1 {
-      font-size: 24px;
-    }
-
-    input {
-      width: 100%;
+    #inputText {
       margin-bottom: 10px;
-      padding: 5px;
-    }
-
-    button {
-      padding: 5px 10px;
-    }
-
-    #qrcode {
-      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>QRコード生成</h1>
-    <input type="text" id="inputText" placeholder="テキストを入力してください">
-    <button onclick="generateQRCode()">生成</button>
-    <div id="qrcode"></div>
-  </div>
+  <h1>QR Code Generator</h1>
+  <input type="text" id="inputText" placeholder="Enter text">
+  <div id="qrcode"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/qrious.min.js"></script>
   <script>
     function generateQRCode() {
       var text = document.getElementById('inputText').value;
@@ -48,6 +28,9 @@
         size: 300
       });
     }
+
+    document.getElementById('inputText').addEventListener('input', generateQRCode);
+    generateQRCode();
   </script>
 </body>
 </html>
