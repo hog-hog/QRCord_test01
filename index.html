@@ -38,6 +38,8 @@
         });
         
         if (qr.value) {
+          qr.background = 'white'; // 背景を白色に設定
+          qr.level = 'L'; // QRコードの誤り訂正レベルを指定
           qr.draw();
         } else {
           throw new Error('QR code generation failed');
