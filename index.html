@@ -1,58 +1,23 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>QRコード生成アプリ</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    input {
-      width: 80%;
-      font-size: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      font-size: 20px;
-      padding: 10px;
-      margin: 10px;
-      background-color: #eee;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #ddd;
-    }
-
-    #qrcode {
-      margin: 20px;
-    }
-  </style>
+  <title>QRコード生成</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/qrcode.js/1.0.0/qrcode.min.css" rel="stylesheet">
 </head>
 <body>
-  <h1>QRコード生成アプリ</h1>
-  <p>文字列を入力して、QRコードを生成してください。</p>
-  <input id="inputText" type="text" placeholder="文字列を入力">
-  <button id="generateButton" onclick="generateQRCode()">生成</button>
+  <input type="text" id="inputText">
+  <button onclick="generateQRCode()">QRコードを生成</button>
   <div id="qrcode"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode.js/1.0.0/qrcode.min.js"></script>
   <script>
     function generateQRCode() {
       var text = document.getElementById('inputText').value;
-      if (text) {
-        var qr = new QRious({
-          element: document.getElementById('qrcode'),
-          value: text,
-          size: 300
-        });
-      } else {
-        alert('文字列を入力してください。');
-      }
+      var qr = new QRious({
+        element: document.getElementById('qrcode'),
+        value: text,
+        size: 300
+      });
     }
   </script>
 </body>
