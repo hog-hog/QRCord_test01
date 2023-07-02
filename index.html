@@ -36,6 +36,12 @@
           value: text,
           size: 200
         });
+        
+        if (qr.value) {
+          qr.draw();
+        } else {
+          throw new Error('QR code generation failed');
+        }
       } catch (error) {
         console.error('QR code generation failed:', error);
         alert('QR code generation failed. Please check the input and try again.');
