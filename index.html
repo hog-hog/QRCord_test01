@@ -1,50 +1,42 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>QRコード生成</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    
-    #qr-input {
-      width: 300px;
-      padding: 10px;
-      font-size: 18px;
-    }
-    
-    #qr-code {
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>QRコード生成</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        #qrcode {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-  <h1>QRコード生成</h1>
-  <input type="text" id="qr-input" placeholder="テキストを入力してください">
-  <div id="qr-code"></div>
+    <h1>任意のテキストをQRコードに変換する</h1>
+    <div>
+        <label for="text-input">テキスト入力：</label>
+        <input type="text" id="text-input">
+        <button onclick="generateQRCode()">生成</button>
+    </div>
+    <div id="qrcode"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-  <script>
-    // QRコードを生成する関数
-    function generateQRCode() {
-      var text = document.getElementById('qr-input').value;
-      var qr = new QRious({
-        element: document.getElementById('qr-code'),
-        value: text,
-        size: 300
-      });
-    }
-    
-    // 入力値が変更されたときにQRコードを再生成する
-    document.getElementById('qr-input').addEventListener('input', generateQRCode);
-    
-    // 初期状態でQRコードを生成する
-    generateQRCode();
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var text = document.getElementById('text-input').value;
+            var qr = new QRious({
+                element: document.getElementById('qrcode'),
+                value: text,
+                size: 200
+            });
+        }
+    </script>
 </body>
 </html>
