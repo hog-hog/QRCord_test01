@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>QRコード生成</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    
-    #qr-input {
-      display: block;
-      margin-bottom: 20px;
-    }
-    
-    #qr-code {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>QRコード生成</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #qrCode {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h1>任意の文字列をQRコードに変換するWebアプリ</h1>
-  <input type="text" id="qr-input" placeholder="QRコードに変換する文字列を入力してください">
-  <canvas id="qr-code"></canvas>
+    <h1>任意の文字列をQRコードに変換</h1>
+    <p>文字列を入力してください:</p>
+    <input type="text" id="inputText">
+    <button onclick="generateQRCode()">QRコード生成</button>
+    <div id="qrCode"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-  <script>
-    const input = document.getElementById('qr-input');
-    const qrCodeCanvas = document.getElementById('qr-code');
-    const qrCode = new QRious({
-      element: qrCodeCanvas,
-      size: 300
-    });
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var inputText = document.getElementById("inputText").value;
 
-    input.addEventListener('input', generateQRCode);
+            // Clear existing QR code
+            var qrCodeElement = document.getElementById("qrCode");
+            qrCodeElement.innerHTML = "";
 
-    function generateQRCode() {
-      const text = input.value;
-      
-      if (text.trim() === '') {
-        qrCodeCanvas.style.display = 'none';
-      } else {
-        qrCodeCanvas.style.display = 'block';
-        qrCode.value = text;
-      }
-    }
-  </script>
+            try {
+                if (inputText.trim() !== "") {
+                    var qr = new QRious({
+                        element: qrCodeElement,
+                        value: inputText,
+                        size: 200
+                    });
+                } else {
+                    throw new Error("文字列を入力してください。");
+                }
+            } catch (error) {
+                alert(error);
+            }
+        }
+    </script>
 </body>
 </html>
