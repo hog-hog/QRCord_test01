@@ -30,11 +30,16 @@
       document.getElementById('qrCode').innerHTML = '';
       
       // Generate QR code
-      var qr = new QRious({
-        element: document.getElementById('qrCode'),
-        value: text,
-        size: 200
-      });
+      try {
+        var qr = new QRious({
+          element: document.getElementById('qrCode'),
+          value: text,
+          size: 200
+        });
+      } catch (error) {
+        console.error('QR code generation failed:', error);
+        alert('QR code generation failed. Please check the input and try again.');
+      }
     });
   </script>
 </body>
